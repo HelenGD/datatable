@@ -1,30 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './table.css';
-import {TableItem} from '../table-item/table-item';
 
-const Table = () => {
+const tableCells = [
+  'id',
+  'firstName',
+  'lastName',
+  'email',
+  'phone',
+  'address',
+  'description',
+];
+
+const Table = (props) => {
+  const { data, sort, onSort } = props;
 
   return (
     <div className="table-container">
       <table className="table">
         <tbody>
           <tr>
-            <th className="table-cell">id</th>
-            <th className="table-cell">firstName</th>
-            <th className="table-cell">lastName</th>
-            <th className="table-cell">email</th>
-            <th className="table-cell">phone</th>
-            <th className="table-cell">adress</th>
-            <th className="table-cell">description</th>
+            {tableCells.map((column) => (
+              <th
+                key={column}
+                className="table-cell"
+                onClick={() => onSort(column)}
+              >
+                {column}
+                {sort.column === column && (
+                  <span>
+                    {sort.order === "asc" ? "▲" : "▼"}
+                  </span>
+                )}
+              </th>
+            ))}
           </tr>
-          {/* {products.map(product => (
-            <TableItem key={product.id} product={product} />
-          ))} */}
-          <TableItem />
+          {/* <tr>
+            <th className="table-cell">id</th>
+            <th className="table-cell" onClick={() => setClick(isClick)}>firstName</th>
+            <th className="table-cell" onClick={() => setClick(isClick)}>lastName</th>
+            <th className="table-cell" onClick={() => setClick(isClick)}>email</th>
+            <th className="table-cell" onClick={() => setClick(isClick)}>phone</th>
+            <th className="table-cell" onClick={() => setClick(isClick)}>address</th>
+            <th className="table-cell" onClick={() => setClick(isClick)}>description</th>
+          </tr> */}
+          {data.map(item => (
+            <tr key={item.id + item.email}>
+              <td className="table-column">{item.id}</td>
+              <td className="table-column">{item.firstName}</td>
+              <td className="table-column">{item.lastName}</td>
+              <td className="table-column">{item.email}</td>
+              <td className="table-column">{item.phone}</td>
+              <td className="table-column">
+                {Object.values(item.address).join(', ')}
+              </td>
+              <td className="table-column">{item.description}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
 }
 
-export {Table};
+export { Table };
+

@@ -1,0 +1,16 @@
+.pagination-button {
+  border: none; 
+  outline: none;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid gray;
+}
+
+.pagination-button-active {
+  border: none; 
+  outline: none;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid gray;
+  font-weight: bold;
+}
