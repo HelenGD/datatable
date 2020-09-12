@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './table.css';
+import {DataDetails} from "../data-details/data-details";
 
 const tableCells = [
   'id',
@@ -13,7 +14,12 @@ const tableCells = [
 
 const Table = (props) => {
   const { data, sort, onSort } = props;
+  const [tableRow, setTableRow] = useState(null);
 
+  // const onClickTableRow = (tableRow) => {
+  //   setTableRow(tableRow)
+  //   console.log(tableRow)
+  // }
   return (
     <div className="table-container">
       <table className="table">
@@ -23,7 +29,7 @@ const Table = (props) => {
               <th
                 key={column}
                 className="table-cell"
-                onClick={() => onSort(column)}
+                onClick={() => onSort(column)}    
               >
                 {column}
                 {sort.column === column && (
@@ -34,17 +40,9 @@ const Table = (props) => {
               </th>
             ))}
           </tr>
-          {/* <tr>
-            <th className="table-cell">id</th>
-            <th className="table-cell" onClick={() => setClick(isClick)}>firstName</th>
-            <th className="table-cell" onClick={() => setClick(isClick)}>lastName</th>
-            <th className="table-cell" onClick={() => setClick(isClick)}>email</th>
-            <th className="table-cell" onClick={() => setClick(isClick)}>phone</th>
-            <th className="table-cell" onClick={() => setClick(isClick)}>address</th>
-            <th className="table-cell" onClick={() => setClick(isClick)}>description</th>
-          </tr> */}
           {data.map(item => (
-            <tr key={item.id + item.email}>
+            <tr key={item.id + item.email} onClick={() => setTableRow(item)}>
+                  {console.log("click")}
               <td className="table-column">{item.id}</td>
               <td className="table-column">{item.firstName}</td>
               <td className="table-column">{item.lastName}</td>
@@ -58,6 +56,9 @@ const Table = (props) => {
           ))}
         </tbody>
       </table>
+      <div>
+        {tableRow ? <DataDetails person={tableRow} /> : null}
+      </div>
     </div>
   );
 }

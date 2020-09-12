@@ -1,0 +1,10 @@
+.person-description {
+  width: 1000px;
+}
+textarea::-webkit-input-placeholder {
+  color: black;
+}
+
+textarea::-moz-placeholder {
+  color: black;
+}

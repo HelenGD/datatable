@@ -22,7 +22,6 @@ export const getSortedRecords = (
     case 'lastName':
     case 'email':
     case 'phone':
-   
     case 'description':
       return records.slice().sort((a, b) => {
         const fieldA = a[column];

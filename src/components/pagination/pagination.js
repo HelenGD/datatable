@@ -3,10 +3,10 @@ import './pagination.css';
 
 const Pagination = (props) => {
   const {pageSize, totalCount, currentPage, onSwitchPage} = props;
-  console.log(pageSize, totalCount, currentPage)
+  // console.log(pageSize, totalCount, currentPage, onSwitchPage)
 
   const pagesCount = Math.ceil(totalCount / pageSize);
-  console.log(pagesCount)
+  // console.log(pagesCount)
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
@@ -19,10 +19,8 @@ const Pagination = (props) => {
             key={page + 1} 
             className={currentPage === page ? "pagination-button-active" : "pagination-button"} 
             type="button" 
-            onClick={() => onSwitchPage(currentPage)}>{page}</button>
+            onClick={() => onSwitchPage(page)}>{page}</button>
         })}
-        {/* <button className="button pagination-button" type="button">1</button>
-        <button className="button pagination-button-active" type="button">2</button> */}
       </div>
   );
 }
