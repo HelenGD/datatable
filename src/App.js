@@ -6,6 +6,8 @@ import { fetchData } from './components/api';
 import { getSortedRecords } from './components/utils';
 import { Pagination } from './components/pagination/pagination';
 import { Search } from './components/search/search';
+import { Switcher } from './components/switcher/switcher';
+import { Popup } from './components/popup/popup';
 
 const pageSize = 50;
 
@@ -18,44 +20,54 @@ const App = () => {
     column: 'id'
   });
   const [findFilter, setFindFilter] = useState("");
-  // const [tableRow, setTableRow] = useState(null);
+  const [checked, setChecked] = useState("radio-1");
+  const [visiblePopup, setVisiblePopup] = useState(false);
 
-  // const onClickTableRow = (tableRow) => {
-  //   setTableRow(tableRow)
-  //   console.log(tableRow)
-  // }
-
+  const handleAddRow = (newRow) => {
+    setData([newRow, ...data]);
+    setVisiblePopup(false);
+  };
 
   const invertDirect = {
     asc: 'desc',
     desc: 'asc'
   }
 
-  const onSort = (columnName, column) => {
+  const onSort = (column) => {
     // console.log("ddd", columnName)
     setSort({
-      column: columnName,
-      order: sort.column === columnName
+      column,
+      order: sort.column === column
         ? invertDirect[sort.order]
         : 'asc',
     })
     // console.log("aaa", sort)
   }
 
-  const onSwitchPage = (actualPage) => {
-    setCurrentPage(actualPage)
-    // console.log("лох", actualPage)
+  const handleSubmitFilter = value => {
+    setFindFilter(value);
+    setCurrentPage(1)
   }
 
+  const onVisiblePopup = (visiblePopup) => {
+    console.log("лох", visiblePopup)
+    setVisiblePopup(visiblePopup);
+    console.log("хол", visiblePopup)
+  }
   useEffect(
     () => {
       setLoading(true);
 
-      fetchData()
+      fetchData(checked === "radio-1" ? 32 : 1000)
+        // .catch(error => {
+        //   console.error(error);
+        //   return [];
+        // })
         .then(response => setData(response))
-        .then(() => setLoading(false));
+        .then(() => setLoading(false))
+        .catch(console.error)
     },
-    [],
+    [checked],
   );
 
   const filteredData = data.filter(row => JSON
@@ -77,16 +89,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <Search onSubmit={setFindFilter} />
+      {visiblePopup ? <Popup data={currentPosts} onAdd={handleAddRow} /> : null}
+      
+      <Search onSubmit={handleSubmitFilter} />
+      <Switcher checked={checked} onChange={setChecked}/>
       <Pagination
         totalCount={totalCount}
         pageSize={pageSize}
         currentPage={currentPage}
-        onSwitchPage={onSwitchPage}
+        onSwitchPage={setCurrentPage}
       />
       {isLoading
         ? <Loader />
-        : <Table data={currentPosts} sort={sort} onSort={onSort} />
+        : <Table data={currentPosts} sort={sort} onSort={onSort} onVisiblePopup={onVisiblePopup}/>
       }
       {/* {console.log("c", sortedData)}
       {console.log("a", sort)} */}

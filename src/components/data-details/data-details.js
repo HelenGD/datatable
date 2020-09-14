@@ -8,7 +8,7 @@ const DataDetails = (props) => {
     <p>Выбран пользователь <b>{person.firstName + ' ' + person.lastName}</b></p>
     <p>
     Описание: <br />
-    <textarea className="person-description" placeholder={person.description}></textarea>
+    <textarea className="person-description" value={person.description} />
     </p>
 
     <p>Адрес проживания: <b>{person.address.streetAddress}</b></p>

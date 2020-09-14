@@ -8,6 +8,7 @@ const Search = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(value);
+    console.log(value)
   }
 
   return (
