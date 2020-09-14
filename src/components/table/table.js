@@ -16,16 +16,9 @@ const Table = (props) => {
   const { data, sort, onSort, onVisiblePopup } = props;
   const [tableRow, setTableRow] = useState(null);
 
-  // const onClickTableRow = (tableRow) => {
-  //   setTableRow(tableRow)
-  //   console.log(tableRow)
-  // }
   return (
     <div className="table-container">
-      <button 
-      type="submit"
-      onClick={() => onVisiblePopup(true)}
-      >Добавить</button>
+      
       <table className="table">
         <tbody>
           <tr>
@@ -47,7 +40,6 @@ const Table = (props) => {
           {data.map(item => (
             <tr key={item.id + item.email} 
                 onClick={() => setTableRow(item)}>
-                {/* {console.log("click")} */}
               <td className="table-column">{item.id}</td>
               <td className="table-column">{item.firstName}</td>
               <td className="table-column">{item.lastName}</td>
@@ -62,6 +54,10 @@ const Table = (props) => {
         </tbody>
       </table>
       <div>
+      <button 
+        type="submit"
+        onClick={() => onVisiblePopup(true)}
+        >Добавить</button>
         {tableRow ? <DataDetails person={tableRow} /> : null}
       </div>
     </div>

@@ -4,7 +4,7 @@ import './data-details.css';
 const DataDetails = (props) => {
   const {person} = props;
   return (
-    <div>
+    <div className="details-container">
     <p>Выбран пользователь <b>{person.firstName + ' ' + person.lastName}</b></p>
     <p>
     Описание: <br />

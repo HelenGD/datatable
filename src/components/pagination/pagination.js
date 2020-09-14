@@ -3,17 +3,15 @@ import './pagination.css';
 
 const Pagination = (props) => {
   const {pageSize, totalCount, currentPage, onSwitchPage} = props;
-  // console.log(pageSize, totalCount, currentPage, onSwitchPage)
 
   const pagesCount = Math.ceil(totalCount / pageSize);
-  // console.log(pagesCount)
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
 
   return (
-      <div>
+      <div className="pagination-container">
         {pages.map(page => {
           return <button 
             key={page + 1} 

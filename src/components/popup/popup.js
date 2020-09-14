@@ -13,7 +13,7 @@ const isNotEmpty = (row) => {
 const Popup = (props) => {
   const { onAdd } = props;
   const [newRow, setNewRow] = useState({
-    id: Math.random(),
+    id: -Math.random(),
     firstName: "",
     lastName: "",
     email: "",

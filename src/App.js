@@ -34,14 +34,12 @@ const App = () => {
   }
 
   const onSort = (column) => {
-    // console.log("ddd", columnName)
     setSort({
       column,
       order: sort.column === column
         ? invertDirect[sort.order]
         : 'asc',
     })
-    // console.log("aaa", sort)
   }
 
   const handleSubmitFilter = value => {
@@ -59,10 +57,6 @@ const App = () => {
       setLoading(true);
 
       fetchData(checked === "radio-1" ? 32 : 1000)
-        // .catch(error => {
-        //   console.error(error);
-        //   return [];
-        // })
         .then(response => setData(response))
         .then(() => setLoading(false))
         .catch(console.error)
@@ -103,8 +97,6 @@ const App = () => {
         ? <Loader />
         : <Table data={currentPosts} sort={sort} onSort={onSort} onVisiblePopup={onVisiblePopup}/>
       }
-      {/* {console.log("c", sortedData)}
-      {console.log("a", sort)} */}
     </div>
   );
 }

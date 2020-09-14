@@ -12,7 +12,7 @@ const Search = (props) => {
   }
 
   return (
-    <form
+    <form className="search-form"
       onSubmit={handleSubmit}
     >
       <input
