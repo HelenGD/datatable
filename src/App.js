@@ -83,8 +83,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {visiblePopup ? <Popup data={currentPosts} onAdd={handleAddRow} /> : null}
-      
       <Search onSubmit={handleSubmitFilter} />
       <Switcher checked={checked} onChange={setChecked}/>
       <Pagination
@@ -93,6 +91,7 @@ const App = () => {
         currentPage={currentPage}
         onSwitchPage={setCurrentPage}
       />
+      {visiblePopup ? <Popup data={currentPosts} onAdd={handleAddRow} /> : null}
       {isLoading
         ? <Loader />
         : <Table data={currentPosts} sort={sort} onSort={onSort} onVisiblePopup={onVisiblePopup}/>

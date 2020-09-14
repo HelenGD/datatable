@@ -18,7 +18,7 @@ const Table = (props) => {
 
   return (
     <div className="table-container">
-      
+      <button type="submit" onClick={() => onVisiblePopup(true)}>Добавить</button>
       <table className="table">
         <tbody>
           <tr>
@@ -54,10 +54,7 @@ const Table = (props) => {
         </tbody>
       </table>
       <div>
-      <button 
-        type="submit"
-        onClick={() => onVisiblePopup(true)}
-        >Добавить</button>
+      
         {tableRow ? <DataDetails person={tableRow} /> : null}
       </div>
     </div>
