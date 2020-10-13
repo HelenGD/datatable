@@ -48,9 +48,7 @@ const App = () => {
   }
 
   const onVisiblePopup = (visiblePopup) => {
-    console.log("лох", visiblePopup)
     setVisiblePopup(visiblePopup);
-    console.log("хол", visiblePopup)
   }
   useEffect(
     () => {

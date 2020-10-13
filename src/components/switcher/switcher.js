@@ -3,7 +3,6 @@ import './switcher.css';
 
 const Switcher = (props) => {
   const {checked, onChange} = props; 
-  console.log(checked)
   return (
       <div>
         <input 
